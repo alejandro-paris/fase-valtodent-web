@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+// PROVISIONAL: foto de Google Maps hasta tener la mejorada (clients/fase-valtodent/fotos/mejoradas/).
+import heroImg from '../../assets/img/gabinete.jpg';
+import Icon from '../Icon.astro';
+import { SITE } from '../../site';
+---
+
+<section class="relative overflow-hidden bg-gradient-to-b from-white to-niebla/70">
+  <div class="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-10 pb-14 md:grid-cols-[1.15fr_1fr] md:gap-14 md:px-6 md:pt-16 md:pb-24">
+    <div data-reveal>
+      <p class="font-display text-xs font-semibold tracking-[0.18em] text-hoja uppercase">{SITE.address.city}</p>
+      <h1 class="mt-4 text-[2.5rem] leading-[1.06] font-semibold tracking-tight md:text-6xl">
+        Tu salud y la de tu familia, <span class="text-hoja">cerca de casa</span>
+      </h1>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-grafito/75 md:text-xl">
+        Clínica dental, ginecología, podología, logopedia, psicología y medicina de familia en un mismo sitio.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={`tel:${SITE.phone}`}
+          class="inline-flex items-center gap-2 rounded-full bg-hoja px-6 py-3.5 font-display font-semibold text-white shadow-[0_10px_30px_-12px_rgba(79,107,47,.7)] transition-colors hover:bg-hoja-deep"
+        >
+          <Icon name="phone" class="size-5" />
+          Llamar al {SITE.phoneDisplay}
+        </a>
+        <a
+          href={SITE.mapsUrl}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex items-center gap-2 rounded-full border-[1.5px] border-salvia bg-white px-6 py-3.5 font-display font-semibold text-hoja transition-colors hover:border-hoja"
+        >
+          <Icon name="navigation" class="size-5" />
+          Cómo llegar
+        </a>
+      </div>
+      <p class="mt-6 flex items-center gap-2 text-sm text-gris">
+        <Icon name="clock" class="size-4" />
+        {SITE.hours.map((h) => `${h.days}, ${h.time}`).join(' · ')}
+      </p>
+    </div>
+
+    <div class="relative" data-reveal>
+      <div class="absolute -top-6 -right-10 hidden size-56 rounded-full bg-lima/50 blur-3xl md:block" aria-hidden="true"></div>
+      <Image
+        src={heroImg}
+        alt="Gabinete dental de la clínica"
+        widths={[400, 640, 815]}
+        sizes="(min-width: 768px) 460px, 100vw"
+        class="relative aspect-[4/5] w-full rounded-[2rem] object-cover object-[center_35%] shadow-[0_30px_60px_-30px_rgba(43,47,42,.45)] max-md:aspect-[4/3]"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</section>

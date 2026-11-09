@@ -1,0 +1,15 @@
+---
+import { SITE } from '../site';
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-grafito/10 bg-white">
+  <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-gris md:flex-row md:items-center md:justify-between md:px-6">
+    <p>© {year} {SITE.name} · {SITE.company}</p>
+    <p>
+      Nº de registro sanitario:
+      {SITE.healthRegistry ?? <span class="rounded bg-[#F4E7C8] px-1.5 py-0.5 font-semibold text-[#6B4E12]">pendiente</span>}
+    </p>
+    <p class="text-xs">Versión de demostración · Aviso legal, privacidad y cookies en la web definitiva</p>
+  </div>
+</footer>

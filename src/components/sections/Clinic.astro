@@ -1,0 +1,46 @@
+---
+import { Image } from 'astro:assets';
+// PROVISIONAL: recorte de una foto de Instagram hasta tener la mejorada.
+import consultaImg from '../../assets/img/consulta.jpg';
+import Icon from '../Icon.astro';
+import { REASONS } from '../../site';
+---
+
+<section id="clinica" class="bg-niebla/70">
+  <div class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 md:grid-cols-2 md:gap-16 md:px-6 md:py-24">
+    <div class="order-2 md:order-1" data-reveal>
+      <Image
+        src={consultaImg}
+        alt="Una de las consultas de la clínica"
+        class="aspect-[4/3] w-full rounded-[2rem] object-cover shadow-[0_30px_60px_-30px_rgba(43,47,42,.45)]"
+      />
+    </div>
+
+    <div class="order-1 md:order-2">
+      <div data-reveal>
+        <p class="font-display text-xs font-semibold tracking-[0.18em] text-hoja uppercase">La clínica</p>
+        <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-[2.75rem] md:leading-tight">
+          Sólo somos si es contigo
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-grafito/75">
+          Una clínica de pueblo, con varias especialidades bajo el mismo techo, para que cuidarte sea más fácil.
+        </p>
+      </div>
+      <ul class="mt-8 grid gap-5 sm:grid-cols-2">
+        {
+          REASONS.map((r) => (
+            <li class="flex gap-3" data-reveal>
+              <span class="mt-0.5 grid size-10 shrink-0 place-items-center rounded-xl bg-white text-hoja">
+                <Icon name={r.icon} class="size-5" />
+              </span>
+              <div>
+                <h3 class="font-display font-semibold">{r.title}</h3>
+                <p class="mt-0.5 text-[15px] leading-relaxed text-grafito/70">{r.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

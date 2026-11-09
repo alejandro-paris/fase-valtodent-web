@@ -1,0 +1,57 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/outfit';
+@import '@fontsource-variable/figtree';
+
+/* `motion:` solo aplica cuando las animaciones están activas (JS disponible y sin prefers-reduced-motion). */
+@custom-variant motion (&:where(.motion, .motion *));
+
+/* Tokens de marca: ver clients/fase-valtodent/marca/guia-visual.md en el repositorio de la agencia. */
+@theme {
+  --color-salvia: #b5cd8b;
+  --color-hoja: #4f6b2f;
+  --color-hoja-deep: #3e5524;
+  --color-lima: #d3dd89;
+  --color-niebla: #eef3e2;
+  --color-gris: #727276;
+  --color-grafito: #2b2f2a;
+  --color-papel: #fafaf6;
+  --color-madera: #c9a27a;
+
+  --font-sans: 'Figtree Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-papel text-grafito font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-salvia text-grafito;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-grafito;
+    text-wrap: balance;
+  }
+}
+
+/* Aparición suave al hacer scroll. Sin la clase `motion`, todo se muestra estático. */
+.motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.motion [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}

@@ -1,0 +1,59 @@
+---
+import Icon from '../Icon.astro';
+import { SITE } from '../../site';
+
+const { lat, lon } = SITE.map;
+const d = 0.004;
+const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${lon - d},${lat - d / 2},${lon + d},${lat + d / 2}&layer=mapnik&marker=${lat},${lon}`;
+---
+
+<section id="contacto" class="mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+  <div class="grid gap-10 md:grid-cols-[1fr_1.2fr] md:gap-14">
+    <div data-reveal>
+      <p class="font-display text-xs font-semibold tracking-[0.18em] text-hoja uppercase">Contacto</p>
+      <h2 class="mt-3 text-3xl font-semibold tracking-tight md:text-[2.75rem] md:leading-tight">Pide tu cita</h2>
+      <p class="mt-4 text-lg leading-relaxed text-grafito/75">Llámanos y te buscamos un hueco que te venga bien.</p>
+
+      <dl class="mt-8 space-y-6">
+        <div class="flex gap-4">
+          <dt class="grid size-11 shrink-0 place-items-center rounded-2xl bg-niebla text-hoja"><Icon name="phone" class="size-5" /><span class="sr-only">Teléfono</span></dt>
+          <dd>
+            <a href={`tel:${SITE.phone}`} class="font-display text-xl font-semibold hover:text-hoja">{SITE.phoneDisplay}</a>
+            <br />
+            <a href={`tel:${SITE.mobile}`} class="text-grafito/75 hover:text-hoja">{SITE.mobileDisplay}</a>
+            {SITE.whatsappUrl && (
+              <a href={SITE.whatsappUrl} class="ml-2 font-semibold text-hoja underline underline-offset-4">WhatsApp</a>
+            )}
+          </dd>
+        </div>
+        <div class="flex gap-4">
+          <dt class="grid size-11 shrink-0 place-items-center rounded-2xl bg-niebla text-hoja"><Icon name="map-pin" class="size-5" /><span class="sr-only">Dirección</span></dt>
+          <dd class="leading-relaxed">
+            {SITE.address.street}<br />
+            {SITE.address.postalCode} {SITE.address.city} ({SITE.address.region})<br />
+            <a href={SITE.mapsUrl} target="_blank" rel="noopener" class="font-semibold text-hoja underline underline-offset-4">Cómo llegar</a>
+          </dd>
+        </div>
+        <div class="flex gap-4">
+          <dt class="grid size-11 shrink-0 place-items-center rounded-2xl bg-niebla text-hoja"><Icon name="clock" class="size-5" /><span class="sr-only">Horario</span></dt>
+          <dd class="leading-relaxed">
+            {SITE.hours.map((h) => (<><span class="font-semibold">{h.days}</span><br />{h.time}</>))}
+          </dd>
+        </div>
+        <div class="flex gap-4">
+          <dt class="grid size-11 shrink-0 place-items-center rounded-2xl bg-niebla text-hoja"><Icon name="brand-instagram" class="size-5" /><span class="sr-only">Instagram</span></dt>
+          <dd class="self-center"><a href={SITE.instagramUrl} target="_blank" rel="noopener" class="hover:text-hoja">@clinicasfasevaltodent</a></dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="overflow-hidden rounded-[2rem] border border-grafito/10 bg-niebla" data-reveal>
+      <iframe
+        title={`Mapa: ${SITE.name}, ${SITE.address.street}, ${SITE.address.city}`}
+        src={mapSrc}
+        loading="lazy"
+        class="h-[340px] w-full md:h-full md:min-h-[460px]"
+      ></iframe>
+    </div>
+  </div>
+</section>

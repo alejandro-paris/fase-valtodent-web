@@ -1,0 +1,53 @@
+---
+// Iconos de Tabler (contorno), incrustados como SVG en el HTML.
+import dental from '@tabler/icons/outline/dental.svg?raw';
+import dentalBroken from '@tabler/icons/outline/dental-broken.svg?raw';
+import sparkles from '@tabler/icons/outline/sparkles.svg?raw';
+import moodKid from '@tabler/icons/outline/mood-kid.svg?raw';
+import moodSmile from '@tabler/icons/outline/mood-smile.svg?raw';
+import genderFemale from '@tabler/icons/outline/gender-female.svg?raw';
+import footsteps from '@tabler/icons/outline/footsteps.svg?raw';
+import messages from '@tabler/icons/outline/messages.svg?raw';
+import brain from '@tabler/icons/outline/brain.svg?raw';
+import stethoscope from '@tabler/icons/outline/stethoscope.svg?raw';
+import mapPin from '@tabler/icons/outline/map-pin.svg?raw';
+import users from '@tabler/icons/outline/users.svg?raw';
+import heartHandshake from '@tabler/icons/outline/heart-handshake.svg?raw';
+import clock from '@tabler/icons/outline/clock.svg?raw';
+import phone from '@tabler/icons/outline/phone.svg?raw';
+import navigation from '@tabler/icons/outline/navigation.svg?raw';
+import brandInstagram from '@tabler/icons/outline/brand-instagram.svg?raw';
+
+const ICONS: Record<string, string> = {
+  dental,
+  'dental-broken': dentalBroken,
+  sparkles,
+  'mood-kid': moodKid,
+  'mood-smile': moodSmile,
+  'gender-female': genderFemale,
+  footsteps,
+  messages,
+  brain,
+  stethoscope,
+  'map-pin': mapPin,
+  users,
+  'heart-handshake': heartHandshake,
+  clock,
+  phone,
+  navigation,
+  'brand-instagram': brandInstagram,
+};
+
+interface Props {
+  name: string;
+  class?: string;
+}
+
+const { name, class: className = 'size-6' } = Astro.props;
+const svg = (ICONS[name] ?? '')
+  .replace(/\s(width|height)="24"/g, '')
+  .replace(/class="[^"]*"/, `class="${className}" aria-hidden="true"`)
+  .replace('stroke-width="2"', 'stroke-width="1.6"');
+---
+
+<Fragment set:html={svg} />
